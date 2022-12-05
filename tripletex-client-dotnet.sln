@@ -4,20 +4,30 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BccCode.Tripletex.Client", "BccCode.Tripletex.Client\BccCode.Tripletex.Client.csproj", "{09B13C56-1A3F-4845-ABC6-CBA1CB104DB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BccCode.Tripletex.Client.Tests", "BccCode.Tripletex.Client.Tests\BccCode.Tripletex.Client.Tests.csproj", "{B866B316-65D7-4983-8097-46F93223595E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BccCode.Tripletex.Client.Tests", "BccCode.Tripletex.Client.Tests\BccCode.Tripletex.Client.Tests.csproj", "{B866B316-65D7-4983-8097-46F93223595E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1F00CF5-9086-47AC-AF09-22572446651F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Generate|Any CPU = Generate|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{09B13C56-1A3F-4845-ABC6-CBA1CB104DB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09B13C56-1A3F-4845-ABC6-CBA1CB104DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B13C56-1A3F-4845-ABC6-CBA1CB104DB8}.Generate|Any CPU.ActiveCfg = Generate|Any CPU
+		{09B13C56-1A3F-4845-ABC6-CBA1CB104DB8}.Generate|Any CPU.Build.0 = Generate|Any CPU
 		{09B13C56-1A3F-4845-ABC6-CBA1CB104DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09B13C56-1A3F-4845-ABC6-CBA1CB104DB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B866B316-65D7-4983-8097-46F93223595E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B866B316-65D7-4983-8097-46F93223595E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B866B316-65D7-4983-8097-46F93223595E}.Generate|Any CPU.ActiveCfg = Generate|Any CPU
+		{B866B316-65D7-4983-8097-46F93223595E}.Generate|Any CPU.Build.0 = Generate|Any CPU
 		{B866B316-65D7-4983-8097-46F93223595E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B866B316-65D7-4983-8097-46F93223595E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
