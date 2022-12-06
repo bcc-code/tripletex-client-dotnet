@@ -20,6 +20,13 @@
 
 	<PropertyGroup>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Tripletex API Client</Title>
+		<Description>.Net SDK for the Tripletex API (v2)</Description>
+		<Copyright>BCC Code</Copyright>
+		<Company>BCC Code</Company>
+		<PackageProjectUrl>https://github.com/bcc-code/tripletex-client-dotnet</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/bcc-code/tripletex-client-dotnet</RepositoryUrl>
 	</PropertyGroup>
 
 	<Target Name="NSwag" BeforeTargets="PreBuildEvent" Condition=" '$(Configuration)' == 'Generate' ">
