@@ -35,15 +35,10 @@ jobs:
             echo "VERSION=${{ env.VERSION }}.${{ github.run_number}}-beta" >> "$GITHUB_ENV"
         fi
 
-    - name: Build
-      working-directory: BccCode.Tripletex.Client
-      run:  |
-        dotnet build -c Release -o . BccCode.Tripletex.Client.csproj
-
     - name: Package
       working-directory: BccCode.Tripletex.Client
       run:  |
-        dotnet pack -p:PackageVersion=${{ env.VERSION }} -c Release -o . BccCode.Tripletex.Client.csproj
+        dotnet pack -p:PackageVersion=${{ env.VERSION }} -c Release -o . BccCode.Tripletex.Client.csproj -p:GeneratePackageOnBuild=false
 
     - name: Publish
       working-directory: BccCode.Tripletex.Client
