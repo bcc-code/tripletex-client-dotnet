@@ -31,8 +31,6 @@ To use the SDK in a .Net application, add the `BccCode.Tripletex.Client` nuget p
 The `ITripletexClient` service can be added to the applications services during startup (startup.cs or program.cs) using the following code (.net 6):
 
 ```csharp
-using BccCode.Tripletex.Client;
-
 \\ ...
 
 builder.Services.AddTripletexClient(new TripletexClientOptions
@@ -47,8 +45,6 @@ builder.Services.AddTripletexClient(new TripletexClientOptions
 Alternatively, the configuration can be read automatically from a "Tripletex" section in your configuration:
 
 ```csharp
-using BccCode.Tripletex.Client;
-
 \\ ...
 
 builder.Services.AddTripletexClient(); //Read from "Tripletex" configuration section:

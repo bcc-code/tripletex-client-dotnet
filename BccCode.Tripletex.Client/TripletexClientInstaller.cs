@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Runtime;
 using System.Text;
 
-namespace BccCode.Tripletex.Client
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class TripltexClientInstaller
     {
