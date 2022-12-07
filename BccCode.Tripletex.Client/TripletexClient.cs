@@ -55,6 +55,7 @@ namespace BccCode.Tripletex.Client
         }
         partial void ProcessResponse(HttpClient client, HttpResponseMessage response)
         {
+
         }
 
 

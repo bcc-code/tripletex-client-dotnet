@@ -39,6 +39,11 @@
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' Delete' + $match.Groups[1].Value + 'Async('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(Delete)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' Create' + $match.Groups[1].Value + 'Async('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(Create)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" /-->
 
+		<!-- Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); $match.Groups[1].Value + ' = default' + $match.Groups[6].Value; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, '((([A-Za-z]+\?)|(string)|(CancellationToken)) [A-Za-z0-9]+)((, )|(\)))', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" / -->
+
+
+		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); $match.Groups[1].Value + 'ecimal'; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, '(d|D)(ouble)', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
+		
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' Get' + $match.Groups[1].Value + 'iesAsync('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(y_search)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' Get' + $match.Groups[1].Value + 'chesAsync('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(ch_search)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' Get' + $match.Groups[1].Value + 'sAsync('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(_search)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
@@ -209,7 +214,7 @@
 		
 				
 		
-		<!-- Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); $match.Groups[1].Value + ' = default' + $match.Groups[2].Value; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, '(, [A-Za-z]+\? [A-Za-z0-9]+)(,?)', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" /-->
+		
 		<!-- Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); '(string ids,'; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, '\(string id,', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" /-->
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ''; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' Required = Newtonsoft\.Json\.Required\.[A-Za-z]+(,)?', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
 		<!-- Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' Batch' + $match.Groups[1].Value + 'Async('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(List)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" / -->
