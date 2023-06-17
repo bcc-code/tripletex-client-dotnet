@@ -1,4 +1,6 @@
+using System.Formats.Asn1;
 using System.Security.AccessControl;
+using Task = System.Threading.Tasks.Task;
 
 namespace BccCode.Tripletex.Client.Tests
 {
@@ -10,8 +12,15 @@ namespace BccCode.Tripletex.Client.Tests
             _options = ConfigHelper.GetOptions();
         }
 
-
         [Fact]
+        public async System.Threading.Tasks.Task GetBudgetsTest()
+        {
+            var client = new TripletexClient(_options);
+            var project = await client.GetProjectAsync(113087043, "*,projectActivities");
+        }
+
+
+        // [Fact]
         public async void Test1()
         {
             var client = new TripletexClient(_options);
@@ -25,7 +34,7 @@ namespace BccCode.Tripletex.Client.Tests
             var rates = await client.GetEmployeeHourlyCostAndRatesAsync(employees.Values[0].Id, null, null, null, null);
 
 
-            var projects = await client.GetProjectsAsync("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            var projects = await client.GetProjectsAsync("", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
             //var timeregistrations = await client.GetTimesheetEntriesAsync("", null, null, null, DateTime.Today.AddMonths(-3).ToString("yyyy-MM-dd"), DateTime.Today.ToString("yyyy-MM-dd"), null, null, null, null, null);
 
             var bilag = await client.AddLedgerVoucherAsync(false, new Voucher
