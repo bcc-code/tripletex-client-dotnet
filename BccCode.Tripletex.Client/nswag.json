@@ -44,7 +44,7 @@
       "operationGenerationMode": "SingleClientFromOperationId",
       "additionalNamespaceUsages": [ "Newtonsoft.Json" ],
       "additionalContractNamespaceUsages": [],
-      "generateOptionalParameters": false,
+      "generateOptionalParameters": true,
       "generateJsonMethods": true,
       "enforceFlagEnums": false,
       "parameterArrayType": "System.Collections.Generic.IEnumerable",
