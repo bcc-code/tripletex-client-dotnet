@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TripletexClientGenerated.cs~RF1b87aae1.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
@@ -201,8 +205,10 @@
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' ' + $match.Groups[1].Value + 'Entitlement' + $match.Groups[2].Value + 'Async('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)EntitlementEntitlement([A-Za-z]+)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
 
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' ' + $match.Groups[1].Value + 'Inventor' + $match.Groups[2].Value + 'Async('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)InventoryInventor([A-Za-z]+)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
-		
 
+		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); '(response_.IsSuccessStatusCode)'; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, '\(status_ == 200\)', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
+		
+		
 		<!--Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' ' + $match.Groups[1].Value + $match.Groups[2].Value + 'Async('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(EmployeeEmployment)([A-Za-z]+)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" />
 		<Exec WorkingDirectory="$(ProjectDir)" Command="powershell -Command &quot;Start-Sleep -Seconds 1; $callback = { param($match); ' ' + $match.Groups[1].Value + $match.Groups[2].Value + 'Async('; }; (Get-Content TripletexClientGenerated.cs) |  ForEach-Object { [regex]::Replace($_, ' ([A-Za-z]+)(EmployeeEmployment)([A-Za-z]+)Async\(', $callback ) } | Set-Content TripletexClientGenerated.cs&quot;" /-->
 		
