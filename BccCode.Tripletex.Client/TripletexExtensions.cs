@@ -59,12 +59,12 @@ namespace BccCode.Tripletex.Client
 
         public static Project? Identifier(this Project item)
         {
-            return item != null ? new Project { Id = item.Id } : null;
+            return item != null ? new Project { Id = item.Id, ProjectManager = null } : null;
         }
 
         public static Department? Identifier(this Department item)
         {
-            return item != null ? new Department { Id = item.Id } : null;
+            return item != null ? new Department { Id = item.Id, DepartmentManager = null } : null;
         }
 
         public static Department? IdentifierWithName(this Department item)
