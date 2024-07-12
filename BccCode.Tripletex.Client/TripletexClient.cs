@@ -31,7 +31,13 @@ namespace BccCode.Tripletex.Client
 
         internal class ClientFactory : IHttpClientFactory
         {
-            public HttpClient CreateClient(string name) => new HttpClient(new TripletexRateLimitingHandler(new HttpClientHandler()));
+
+            public HttpClient CreateClient(string name)
+            {
+                var rateLimiter = new TripletexRateLimitingHandler();
+                rateLimiter.InnerHandler = new HttpClientHandler();
+                return new HttpClient(rateLimiter);
+            }
         }
 
 

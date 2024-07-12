@@ -19,11 +19,6 @@ namespace BccCode.Tripletex.Client
 
         private const int QUOTA_DELAY_MILLISECONDS = 50;
 
-        public TripletexRateLimitingHandler(HttpMessageHandler innerHandler = null!)
-            : base(innerHandler ?? new HttpClientHandler())
-        {
-        }
-
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             await WaitForQuotaAsync(cancellationToken);
