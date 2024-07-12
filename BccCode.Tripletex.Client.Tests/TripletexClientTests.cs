@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Formats.Asn1;
 using System.Security.AccessControl;
 using Task = System.Threading.Tasks.Task;
@@ -7,7 +8,7 @@ namespace BccCode.Tripletex.Client.Tests
     public class TripletexClientTests
     {
         TripletexClientOptions _options = default!;
-        public TripletexClientTests() 
+        public TripletexClientTests()
         {
             _options = ConfigHelper.GetOptions();
         }
@@ -17,6 +18,38 @@ namespace BccCode.Tripletex.Client.Tests
         {
             var client = new TripletexClient(_options);
             var project = await client.GetProjectAsync(113087043, "*,projectActivities");
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task RateLimitingConcurrencyTest()
+        {
+            var client = new TripletexClient(_options);
+            var start = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            var end = start.AddMonths(1);
+            var date = start;
+            var tasks = new List<Task<ListResponsePosting>>();
+            while (date < end)
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    // Simulate some concurrency
+                    if (i % 20 != 0)
+                    {
+                        Debug.WriteLine("Starting async request: " + date.ToString("yyyy-MM-dd") + " " + i);
+                        tasks.Add(client.GetLedgerPostingsAsync(date.ToString("yyyy-MM-dd"), date.ToString("yyyy-MM-dd")));
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Starting sync request: " + date.ToString("yyyy-MM-dd") + " " + i);
+                        await client.GetLedgerPostingsAsync(date.ToString("yyyy-MM-dd"), date.ToString("yyyy-MM-dd"));
+                        Debug.WriteLine("Completed sync request: " + date.ToString("yyyy-MM-dd") + " " + i);
+                    }
+                }
+                date = date.AddDays(1);
+            }
+            Debug.WriteLine("Awaiting async requests");
+            await System.Threading.Tasks.Task.WhenAll(tasks);
+            Debug.WriteLine("Completed async requests");
         }
 
 
@@ -71,7 +104,7 @@ namespace BccCode.Tripletex.Client.Tests
 
             });
 
-           // client.AddOrderOrderlineAsync
+            // client.AddOrderOrderlineAsync
         }
     }
 }

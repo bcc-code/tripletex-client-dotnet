@@ -34,10 +34,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddTripletexClient(this IServiceCollection services, TripletexClientOptions? options)
         {
-            if (!services.Any(x => x.ServiceType == typeof(IHttpClientFactory)))
-            {
-                services.AddHttpClient();
-            }
+            services.AddHttpClient("TripletexClient")
+                    .AddHttpMessageHandler<TripletexRateLimitingHandler>();
+
+            services.AddTransient<TripletexRateLimitingHandler>();
 
             return services.AddSingleton<ITripletexClient>(x =>
             {
@@ -46,7 +46,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     options = x.GetRequiredService<TripletexClientOptions>();
                 }
                 var clientFactory = x.GetRequiredService<IHttpClientFactory>();
-                var client =  new TripletexClient(options, clientFactory);
+                var client = new TripletexClient(options, clientFactory);
                 return client;
             });
         }

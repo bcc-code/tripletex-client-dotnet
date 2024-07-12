@@ -31,14 +31,14 @@ namespace BccCode.Tripletex.Client
 
         internal class ClientFactory : IHttpClientFactory
         {
-            public HttpClient CreateClient(string name) => new HttpClient();
+            public HttpClient CreateClient(string name) => new HttpClient(new TripletexRateLimitingHandler(new HttpClientHandler()));
         }
 
 
         public async Task<HttpClient> CreateHttpClientAsync(CancellationToken cancellation)
         {
             _sessionToken = await EnsureAccessTokenAsync(cancellation);
-            return _clientFactory.CreateClient();
+            return _clientFactory.CreateClient("TripletexClient");
         }
 
         partial void UpdateJsonSerializerSettings(JsonSerializerSettings settings)
@@ -59,7 +59,7 @@ namespace BccCode.Tripletex.Client
         }
 
 
-        private static ConcurrentDictionary<string, (string? token, DateTime expires)> _tokens = new ConcurrentDictionary<string, (string? token, DateTime expires)>(); 
+        private static ConcurrentDictionary<string, (string? token, DateTime expires)> _tokens = new ConcurrentDictionary<string, (string? token, DateTime expires)>();
         private static SemaphoreSlim _tokenLock = new SemaphoreSlim(1);
         protected virtual async Task<string> EnsureAccessTokenAsync(System.Threading.CancellationToken cancellationToken)
         {
@@ -74,9 +74,9 @@ namespace BccCode.Tripletex.Client
                     {
                         token = await GetSessionTokenAsync(cancellationToken).ConfigureAwait(false);
                         _tokens[key] = token;
-                    }                    
+                    }
 
-                } 
+                }
                 finally
                 {
                     _tokenLock.Release();
@@ -88,8 +88,8 @@ namespace BccCode.Tripletex.Client
         protected async Task<(string? value, DateTime expires)> GetSessionTokenAsync(CancellationToken cancellation)
         {
             var expires = DateTimeOffset.Now.AddDays(1).Date;
-            var token = default(ResponseWrapperSessionToken); 
-            var result = await _clientFactory.CreateClient().PutAsync($"{_options.ApiBasePath}/token/session/:create?consumerToken={_options.ConsumerToken}&employeeToken={_options.EmployeeToken}&expirationDate={expires.ToString("yyyy-MM-dd")}", new StringContent(""), cancellation);
+            var token = default(ResponseWrapperSessionToken);
+            var result = await _clientFactory.CreateClient("TripletexClient").PutAsync($"{_options.ApiBasePath}/token/session/:create?consumerToken={_options.ConsumerToken}&employeeToken={_options.EmployeeToken}&expirationDate={expires.ToString("yyyy-MM-dd")}", new StringContent(""), cancellation);
             if (result.IsSuccessStatusCode)
             {
                 var strResponse = await result.Content.ReadAsStringAsync();
@@ -102,6 +102,6 @@ namespace BccCode.Tripletex.Client
             return (token?.Value?.Token?.ToString(), expires);
         }
 
-       
+
     }
 }
