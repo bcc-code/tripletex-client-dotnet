@@ -2,6 +2,8 @@
 
 A .Net Client/SDK based on the Tripletex swagger specification: https://tripletex.no/v2/swagger.json
 
+Available as NuGet package `https://www.nuget.org/packages/BccCode.Tripletex.Client`
+
 ## Project Structure
 
 * **BccCode.Tripletex.Client** - SDK
